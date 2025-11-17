@@ -1,121 +1,265 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Portfólio Profissional</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }body { font-family: 'Poppins', sans-serif; background: #0d0d0d; color: #fff; overflow-x: hidden; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; background: #0d0d0d; color: #fff; overflow-x: hidden; }
 
-/* Animação de fundo */ .bg-anim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 20%, #222 0%, #000 60%); z-index: -1; animation: pulse 6s ease-in-out infinite; }
+  /* Fundo animado */
+  .bg-anim {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 20% 20%, #222 0%, #000 60%);
+    z-index: -1; animation: pulse 6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0% { filter: brightness(1); } 50% { filter: brightness(1.3); } 100% { filter: brightness(1); } }
 
-@keyframes pulse { 0% { filter: brightness(1); } 50% { filter: brightness(1.3); } 100% { filter: brightness(1); } }
+  header {
+    width: 100%; padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    position: fixed; top: 0; left: 0;
+    background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);
+    z-index: 1000;
+  }
 
-header { width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); z-index: 1000; }
+  header h1 { font-size: 26px; font-weight: 600; letter-spacing: 1px; }
+  nav a { margin-left: 20px; color: #fff; text-decoration: none; font-weight: 300; transition: .3s; }
+  nav a:hover { color: #0ff; }
 
-header h1 { font-size: 26px; font-weight: 600; letter-spacing: 1px; }
+  /* Sessões */
+  section {
+    padding: 120px 60px; min-height: 100vh;
+    opacity: 0; transform: translateY(60px);
+    transition: 1s ease;
+  }
+  section.show { opacity: 1; transform: translateY(0); }
 
-nav a { margin-left: 20px; color: #fff; text-decoration: none; font-weight: 300; transition: 0.3s; }
+  .card {
+    background: #111; padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.1);
+    max-width: 800px;
+  }
 
-nav a:hover { color: #0ff; }
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
 
-/* Sessões */ section { padding: 120px 60px; min-height: 100vh; opacity: 0; transform: translateY(60px); transition: 1s ease; }
+  /* Projetos com imagem */
+  .proj {
+    background: #111; padding: 0;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,255,255,0.1);
+    transition: .3s;
+  }
+  .proj:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0,255,255,0.4);
+  }
+  .proj img {
+    width: 100%; height: 180px;
+    object-fit: cover;
+  }
+  .proj-text {
+    padding: 20px; text-align: center;
+  }
 
-section.show { opacity: 1; transform: translateY(0); }
+  /* Habilidades */
+  .skill-box {
+    background: #111;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #222;
+    text-align: center;
+    transition: .3s;
+    box-shadow: 0 0 15px rgba(0,255,255,0.1);
+  }
+  .skill-box:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 25px rgba(0,255,255,0.3);
+  }
+  .skill-box img {
+    width: 70px;
+    margin-bottom: 10px;
+  }
 
-#home h2 { font-size: 42px; margin-bottom: 15px; }
+  /* FORMULÁRIO DE CONTATO CENTRALIZADO */
+  #contato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 
-#home p { max-width: 600px; font-size: 18px; opacity: 0.8; }
+  #contato form {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
 
-/* Sobre */ #sobre .card { background: #111; padding: 40px; border-radius: 14px; box-shadow: 0 0 20px rgba(0,255,255,0.1); max-width: 800px; }
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.2);
+  }
 
-/* Projetos */ #projetos .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+  input, textarea {
+    padding: 14px;
+    background: #0f0f0f;
+    border: 1px solid #222;
+    color: #fff;
+    border-radius: 6px;
+    outline: none;
+    transition: .3s;
+  }
+  input:focus, textarea:focus {
+    border-color: #0ff;
+    box-shadow: 0 0 10px rgba(0,255,255,0.4);
+  }
 
-.proj { background: #111; padding: 20px; border-radius: 12px; transition: 0.3s; box-shadow: 0 0 15px rgba(0,255,255,0.1); }
-
-.proj:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,255,255,0.3); }
-
-/* Contato */ #contato form { display: flex; flex-direction: column; gap: 15px; max-width: 400px; }
-
-input, textarea { padding: 14px; background: #0f0f0f; border: 1px solid #222; color: #fff; border-radius: 6px; outline: none; }
-
-button { padding: 14px; background: #0ff; color: #000; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: 0.3s; }
-
-button:hover { filter: brightness(0.8); } </style>
-
+  button {
+    padding: 14px;
+    background: #0ff;
+    color: #000;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: .3s;
+  }
+  button:hover { filter: brightness(0.8); }
+</style>
 </head>
+
 <body>
-<div class="bg-anim"></div><header>
+
+<div class="bg-anim"></div>
+
+<header>
   <h1>Meu Portfólio</h1>
   <nav>
     <a href="#home">Início</a>
     <a href="#sobre">Sobre</a>
     <a href="#projetos">Projetos</a>
+    <a href="#skills">Habilidades</a>
     <a href="#contato">Contato</a>
   </nav>
-</header><section id="home">
+</header>
+
+<section id="home">
   <h2>Olá, eu sou o Desenvolvedor</h2>
-  <p>Crio sites modernos, dinâmicos, rápidos e profissionais. Trabalho com foco em desempenho, design e animações suaves.</p>
-</section><section id="sobre">
+  <p>Crio sites modernos, dinâmicos, rápidos e profissionais.</p>
+</section>
+
+<section id="sobre">
   <div class="card">
     <h2>Sobre Mim</h2>
-    <p>Sou um desenvolvedor apaixonado por tecnologia e inovação. Crio projetos modernos, com excelente experiência do usuário e estética profissional.</p>
+    <p>Sou um desenvolvedor apaixonado por tecnologia e inovação.</p>
   </div>
-</section><section id="projetos">
+</section>
+
+<!-- 🔥 PROJETOS AGORA COM IMAGENS -->
+<section id="projetos">
   <h2>Projetos</h2>
+
   <div class="grid">
-    <div class="proj">Projeto 1</div>
-    <div class="proj">Projeto 2</div>
-    <div class="proj">Projeto 3</div>
-    <div class="proj">Projeto 4</div>
+    <div class="proj">
+      <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f" />
+      <div class="proj-text">Landing Page Moderna</div>
+    </div>
+
+    <div class="proj">
+      <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93" />
+      <div class="proj-text">Dashboard Profissional</div>
+    </div>
+
+    <div class="proj">
+      <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67" />
+      <div class="proj-text">Loja Online Completa</div>
+    </div>
+
+    <div class="proj">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" />
+      <div class="proj-text">Website Empresarial</div>
+    </div>
   </div>
-</section><section id="skills">
+</section>
+
+<!-- Habilidades com ícones -->
+<section id="skills">
   <h2>Habilidades</h2>
-  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-top:20px;">
-    <div class="proj">HTML5 / CSS3</div>
-    <div class="proj">JavaScript / ES6+</div>
-    <div class="proj">React / Next.js</div>
-    <div class="proj">UI/UX Design</div>
-    <div class="proj">APIs e Integrações</div>
-    <div class="proj">Otimização (SEO / Performance)</div>
+
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+
+    <div class="skill-box">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
+      <h3>HTML5</h3>
+    </div>
+
+    <div class="skill-box">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
+      <h3>CSS3</h3>
+    </div>
+
+    <div class="skill-box">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+      <h3>JavaScript</h3>
+    </div>
+
   </div>
-</section><section id="servicos">
+</section>
+
+<section id="servicos">
   <h2>Serviços</h2>
   <div class="grid">
-    <div class="proj"><strong>Criação de Sites</strong><br>Sites modernos, rápidos e responsivos.</div>
-    <div class="proj"><strong>Lojas Online</strong><br>E‑commerce completo e otimizado.</div>
-    <div class="proj"><strong>Landing Pages</strong><br>Páginas que convertem visitantes em clientes.</div>
-    <div class="proj"><strong>Design Personalizado</strong><br>Layouts exclusivos e profissionais.</div>
+    <div class="proj proj-text"><strong>Criação de Sites</strong><br>Sites modernos e rápidos.</div>
+    <div class="proj proj-text"><strong>Lojas Online</strong><br>E-commerce otimizado.</div>
+    <div class="proj proj-text"><strong>Landing Pages</strong><br>Alto poder de conversão.</div>
+    <div class="proj proj-text"><strong>Design Personalizado</strong><br>Visual profissional.</div>
   </div>
-</section><section id="experiencia">
+</section>
+
+<section id="experiencia">
   <h2>Experiência</h2>
-  <div class="card" style="margin-top:20px;">
-    <p><strong>+2 anos desenvolvendo projetos reais</strong>, criando interfaces animadas, sites profissionais, sistemas personalizados e dashboards interativos.</p>
-    <p>Trabalho com foco em animações, estética moderna e experiência do usuário.</p>
+  <div class="card">
+    <p><strong>+2 anos desenvolvendo projetos reais</strong>.</p>
+    <p>Foco em animações, UI moderna e performance.</p>
   </div>
-</section><section id="contato"">
+</section>
+
+<!-- 🔥 CONTATO CENTRALIZADO + CSS BONITO -->
+<section id="contato">
   <h2>Contato</h2>
+
   <form>
-    <input type="text" placeholder="Seu nome" />
-    <input type="email" placeholder="Seu e-mail" />
-    <textarea placeholder="Mensagem"></textarea>
+    <input type="text" placeholder="Seu nome">
+    <input type="email" placeholder="Seu e-mail">
+    <textarea placeholder="Mensagem" rows="4"></textarea>
     <button>Enviar</button>
   </form>
-</section><script>
+</section>
+
+<script>
   const sections = document.querySelectorAll('section');
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('show');
     });
   }, { threshold: 0.2 });
 
   sections.forEach(sec => observer.observe(sec));
-</script></body>
+</script>
+
+</body>
 </html>
