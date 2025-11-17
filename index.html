@@ -30,11 +30,18 @@
   nav a { margin-left: 20px; color: #fff; text-decoration: none; font-weight: 300; transition: .3s; }
   nav a:hover { color: #0ff; }
 
-  /* 🎯 Sessões - CORRIGIDO PARA REDUZIR ESPAÇO */
+  /* 💡 NOVO: CLASSE ACTIVE PARA O LINK DE NAVEGAÇÃO BRILHAR */
+  nav a.active {
+    color: #0ff; /* Cor do texto ativa */
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.7); /* Efeito de brilho */
+    font-weight: 600;
+  }
+  /* FIM DO NOVO CSS */
+
+  /* Sessões - CORRIGIDO PARA REDUZIR ESPAÇO */
   section {
-    /* Padding Reduzido e Ajustado para compensar o header fixo */
-    padding: 100px 60px 80px 60px; /* Top: 100px (para passar o header), Right: 60px, Bottom: 80px, Left: 60px */
-    min-height: auto;  /* REMOVIDO 100vh para eliminar o espaço excessivo entre as seções */
+    padding: 100px 60px 80px 60px; 
+    min-height: auto;  
     
     opacity: 0; transform: translateY(60px);
     transition: 1s ease;
@@ -272,15 +279,61 @@
 </section>
 
 <script>
+  // Pega todas as seções e todos os links de navegação
   const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
 
-  const observer = new IntersectionObserver(entries => {
+  // Função para remover a classe 'active' de todos os links
+  const removeActive = () => {
+      navLinks.forEach(link => link.classList.remove('active'));
+  };
+
+  // 1. O IntersectionObserver para a animação de entrada (seu código original)
+  const showObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('show');
     });
   }, { threshold: 0.2 });
 
-  sections.forEach(sec => observer.observe(sec));
+  sections.forEach(sec => showObserver.observe(sec));
+
+
+  // 2. NOVO: O IntersectionObserver para o estado ativo da navegação
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      // Se a seção está na tela (isIntersecting)
+      if (entry.isIntersecting) {
+        removeActive(); // Remove o brilho de todos
+        
+        // Pega o ID da seção que está ativa (ex: 'home', 'contato')
+        const sectionId = entry.target.id;
+        
+        // Encontra o link de navegação correspondente usando o atributo href
+        const targetLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+        
+        // Se encontrar o link, adiciona a classe 'active'
+        if (targetLink) {
+          targetLink.classList.add('active');
+        }
+      }
+    });
+  }, { 
+    // rootMargin: Um offset que ajuda a definir quando a seção está "ativa"
+    rootMargin: "-50% 0px -50% 0px" 
+  }); 
+  /* Explicação do rootMargin: 
+     -50% 0px -50% 0px significa que a seção está ativa
+     quando ela ocupa a metade central da tela (50% do topo e 50% da base).
+     Isso garante que apenas UMA seção seja considerada "ativa" de cada vez.
+  */
+
+  sections.forEach(sec => navObserver.observe(sec));
+  
+  // Opcional: Adiciona a classe 'active' ao link #home assim que a página carrega
+  document.addEventListener('DOMContentLoaded', () => {
+     document.querySelector('nav a[href="#home"]').classList.add('active');
+  });
+
 </script>
 
 </body>
