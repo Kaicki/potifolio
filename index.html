@@ -30,19 +30,41 @@
   nav a { margin-left: 20px; color: #fff; text-decoration: none; font-weight: 300; transition: .3s; }
   nav a:hover { color: #0ff; }
 
-  /* Sessões */
+  /* 🎯 Sessões - CORRIGIDO PARA REDUZIR ESPAÇO */
   section {
-    padding: 120px 60px; min-height: 100vh;
+    /* Padding Reduzido e Ajustado para compensar o header fixo */
+    padding: 100px 60px 80px 60px; /* Top: 100px (para passar o header), Right: 60px, Bottom: 80px, Left: 60px */
+    min-height: auto;  /* REMOVIDO 100vh para eliminar o espaço excessivo entre as seções */
+    
     opacity: 0; transform: translateY(60px);
     transition: 1s ease;
   }
   section.show { opacity: 1; transform: translateY(0); }
+
+  /* Estilo do Título (h2) - MANTIDO A CORREÇÃO DA DIVISÃO */
+  section h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px; 
+    
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0ff; 
+    
+    display: inline-block; 
+    letter-spacing: 1px;
+  }
+  
+  /* Centraliza todo o conteúdo da maioria das seções */
+  #home, #sobre, #projetos, #skills, #servicos, #experiencia {
+      text-align: center;
+  }
 
   .card {
     background: #111; padding: 40px;
     border-radius: 14px;
     box-shadow: 0 0 20px rgba(0,255,255,0.1);
     max-width: 800px;
+    margin: 0 auto; 
   }
 
   /* GRID */
@@ -50,6 +72,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
   }
 
   /* Projetos com imagem */
@@ -168,7 +193,6 @@
   </div>
 </section>
 
-<!-- 🔥 PROJETOS AGORA COM IMAGENS -->
 <section id="projetos">
   <h2>Projetos</h2>
 
@@ -195,7 +219,6 @@
   </div>
 </section>
 
-<!-- Habilidades com ícones -->
 <section id="skills">
   <h2>Habilidades</h2>
 
@@ -237,7 +260,6 @@
   </div>
 </section>
 
-<!-- 🔥 CONTATO CENTRALIZADO + CSS BONITO -->
 <section id="contato">
   <h2>Contato</h2>
 
