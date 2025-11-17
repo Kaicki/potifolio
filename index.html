@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfólio Profissional</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }body { font-family: 'Poppins', sans-serif; background: #0d0d0d; color: #fff; overflow-x: hidden; }
+
+/* Animação de fundo */ .bg-anim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 20%, #222 0%, #000 60%); z-index: -1; animation: pulse 6s ease-in-out infinite; }
+
+@keyframes pulse { 0% { filter: brightness(1); } 50% { filter: brightness(1.3); } 100% { filter: brightness(1); } }
+
+header { width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); z-index: 1000; }
+
+header h1 { font-size: 26px; font-weight: 600; letter-spacing: 1px; }
+
+nav a { margin-left: 20px; color: #fff; text-decoration: none; font-weight: 300; transition: 0.3s; }
+
+nav a:hover { color: #0ff; }
+
+/* Sessões */ section { padding: 120px 60px; min-height: 100vh; opacity: 0; transform: translateY(60px); transition: 1s ease; }
+
+section.show { opacity: 1; transform: translateY(0); }
+
+#home h2 { font-size: 42px; margin-bottom: 15px; }
+
+#home p { max-width: 600px; font-size: 18px; opacity: 0.8; }
+
+/* Sobre */ #sobre .card { background: #111; padding: 40px; border-radius: 14px; box-shadow: 0 0 20px rgba(0,255,255,0.1); max-width: 800px; }
+
+/* Projetos */ #projetos .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+.proj { background: #111; padding: 20px; border-radius: 12px; transition: 0.3s; box-shadow: 0 0 15px rgba(0,255,255,0.1); }
+
+.proj:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,255,255,0.3); }
+
+/* Contato */ #contato form { display: flex; flex-direction: column; gap: 15px; max-width: 400px; }
+
+input, textarea { padding: 14px; background: #0f0f0f; border: 1px solid #222; color: #fff; border-radius: 6px; outline: none; }
+
+button { padding: 14px; background: #0ff; color: #000; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+
+button:hover { filter: brightness(0.8); } </style>
+
+</head>
+<body>
+<div class="bg-anim"></div><header>
+  <h1>Meu Portfólio</h1>
+  <nav>
+    <a href="#home">Início</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header><section id="home">
+  <h2>Olá, eu sou o Desenvolvedor</h2>
+  <p>Crio sites modernos, dinâmicos, rápidos e profissionais. Trabalho com foco em desempenho, design e animações suaves.</p>
+</section><section id="sobre">
+  <div class="card">
+    <h2>Sobre Mim</h2>
+    <p>Sou um desenvolvedor apaixonado por tecnologia e inovação. Crio projetos modernos, com excelente experiência do usuário e estética profissional.</p>
+  </div>
+</section><section id="projetos">
+  <h2>Projetos</h2>
+  <div class="grid">
+    <div class="proj">Projeto 1</div>
+    <div class="proj">Projeto 2</div>
+    <div class="proj">Projeto 3</div>
+    <div class="proj">Projeto 4</div>
+  </div>
+</section><section id="contato">
+  <h2>Contato</h2>
+  <form>
+    <input type="text" placeholder="Seu nome" />
+    <input type="email" placeholder="Seu e-mail" />
+    <textarea placeholder="Mensagem"></textarea>
+    <button>Enviar</button>
+  </form>
+</section><script>
+  const sections = document.querySelectorAll('section');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(sec => observer.observe(sec));
+</script></body>
+</html>
