@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Portfólio Profissional</title>
+<title>Meu Portfólio Profissional</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,15 +31,14 @@
   nav a { margin-left: 20px; color: #fff; text-decoration: none; font-weight: 300; transition: .3s; }
   nav a:hover { color: #0ff; }
 
-  /* 💡 NOVO: CLASSE ACTIVE PARA O LINK DE NAVEGAÇÃO BRILHAR */
+  /* CLASSE ACTIVE PARA O LINK DE NAVEGAÇÃO BRILHAR */
   nav a.active {
-    color: #0ff; /* Cor do texto ativa */
-    text-shadow: 0 0 8px rgba(0, 255, 255, 0.7); /* Efeito de brilho */
+    color: #0ff; 
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.7); 
     font-weight: 600;
   }
-  /* FIM DO NOVO CSS */
 
-  /* Sessões - CORRIGIDO PARA REDUZIR ESPAÇO */
+  /* Sessões */
   section {
     padding: 100px 60px 80px 60px; 
     min-height: auto;  
@@ -48,7 +48,7 @@
   }
   section.show { opacity: 1; transform: translateY(0); }
 
-  /* Estilo do Título (h2) - MANTIDO A CORREÇÃO DA DIVISÃO */
+  /* Estilo do Título (h2) */
   section h2 {
     text-align: center;
     font-size: 32px;
@@ -72,6 +72,7 @@
     box-shadow: 0 0 20px rgba(0,255,255,0.1);
     max-width: 800px;
     margin: 0 auto; 
+    line-height: 1.6;
   }
 
   /* GRID */
@@ -117,59 +118,92 @@
     transform: scale(1.07);
     box-shadow: 0 0 25px rgba(0,255,255,0.3);
   }
+  
+  /* FILTRO PARA ÍCONES P&B */
   .skill-box img {
     width: 70px;
     margin-bottom: 10px;
+    filter: grayscale(100%) brightness(150%); 
+    transition: filter 0.3s ease-in-out;
+  }
+  .skill-box:hover img {
+    filter: grayscale(0%) brightness(100%); 
+  }
+  
+  .skill-box p {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #ccc;
+    line-height: 1.4;
   }
 
-  /* FORMULÁRIO DE CONTATO CENTRALIZADO */
-  #contato {
+  /* 🆕 NOVO CSS PARA CONTATO DIRETO */
+  .contact-links {
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+    max-width: 450px;
+    width: 100%;
+  }
+
+  .contact-links a {
+    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-  }
-
-  #contato form {
-    width: 100%;
-    max-width: 450px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-
-    background: #111;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,255,255,0.2);
-  }
-
-  input, textarea {
-    padding: 14px;
-    background: #0f0f0f;
+    padding: 15px;
+    background: #181818;
     border: 1px solid #222;
+    border-radius: 8px;
+    text-decoration: none;
     color: #fff;
-    border-radius: 6px;
-    outline: none;
-    transition: .3s;
-  }
-  input:focus, textarea:focus {
-    border-color: #0ff;
-    box-shadow: 0 0 10px rgba(0,255,255,0.4);
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
   }
 
-  button {
-    padding: 14px;
+  .contact-links a:hover {
     background: #0ff;
-    color: #000;
-    font-weight: 600;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: .3s;
+    color: #0d0d0d;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
   }
-  button:hover { filter: brightness(0.8); }
+
+  .contact-links a i {
+    font-size: 20px;
+    margin-right: 15px;
+  }
+  /* FIM NOVO CSS */
+
+  /* RESPONSIVIDADE PARA CELULARES */
+  @media (max-width: 768px) {
+      header {
+          padding: 15px 20px;
+      }
+      
+      header h1 {
+          font-size: 20px;
+      }
+      
+      nav {
+          flex-wrap: wrap; 
+          justify-content: center; 
+      }
+      
+      nav a {
+          margin: 5px 10px; 
+          font-size: 14px;
+      }
+      
+      section {
+          padding: 80px 20px 60px 20px; 
+      }
+
+      section h2 {
+          font-size: 26px;
+          margin-bottom: 30px;
+      }
+  }
 </style>
 </head>
 
@@ -190,13 +224,14 @@
 
 <section id="home">
   <h2>Olá, eu sou o Desenvolvedor</h2>
-  <p>Crio sites modernos, dinâmicos, rápidos e profissionais.</p>
+  <p>Crio sites modernos, dinâmicos, rápidos e profissionais, transformando ideias em experiências digitais impactantes. Seja bem-vindo(a) ao meu universo de código e criatividade!</p>
 </section>
 
 <section id="sobre">
   <div class="card">
     <h2>Sobre Mim</h2>
-    <p>Sou um desenvolvedor apaixonado por tecnologia e inovação.</p>
+    <p>Sou **[Seu Nome]**, um desenvolvedor apaixonado por tecnologia e inovação, com **[Número]** anos de experiência em **[Área: Ex: desenvolvimento front-end, back-end, full-stack]**. Meu foco é construir soluções digitais que não apenas funcionam, mas que encantam e resolvem problemas reais. Acredito que a melhor tecnologia é aquela que une funcionalidade e uma experiência de usuário impecável.</p>
+    <p>Estou sempre buscando aprender novas ferramentas e metodologias, mantendo-me atualizado com as últimas tendências do mercado para entregar projetos de alta qualidade e com performance otimizada.</p>
   </div>
 </section>
 
@@ -205,23 +240,35 @@
 
   <div class="grid">
     <div class="proj">
-      <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f" />
-      <div class="proj-text">Landing Page Moderna</div>
+      <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f" alt="Imagem de Landing Page Moderna" />
+      <div class="proj-text">
+        <p><strong>Landing Page Moderna</strong></p>
+        <p>Desenvolvimento de uma landing page otimizada para conversão, com design responsivo e foco na experiência do usuário.</p>
+      </div>
     </div>
 
     <div class="proj">
-      <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93" />
-      <div class="proj-text">Dashboard Profissional</div>
+      <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93" alt="Imagem de Dashboard Profissional" />
+      <div class="proj-text">
+        <p><strong>Dashboard Profissional</strong></p>
+        <p>Criação de um painel de controle interativo para visualização de dados, com gráficos e relatórios dinâmicos.</p>
+      </div>
     </div>
 
     <div class="proj">
-      <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67" />
-      <div class="proj-text">Loja Online Completa</div>
+      <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67" alt="Imagem de Loja Online Completa" />
+      <div class="proj-text">
+        <p><strong>Loja Online Completa</strong></p>
+        <p>Desenvolvimento de e-commerce com carrinho de compras, sistema de pagamento integrado e painel administrativo.</p>
+      </div>
     </div>
 
     <div class="proj">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" />
-      <div class="proj-text">Website Empresarial</div>
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="Imagem de Website Empresarial" />
+      <div class="proj-text">
+        <p><strong>Website Empresarial</strong></p>
+        <p>Criação de site institucional completo, com informações sobre a empresa, serviços, portfólio e contato.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -232,18 +279,21 @@
   <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
 
     <div class="skill-box">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="Ícone HTML5">
       <h3>HTML5</h3>
+      <p>Estruturação e organização semântica do conteúdo para criar websites acessíveis e compatíveis.</p>
     </div>
 
     <div class="skill-box">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="Ícone CSS3">
       <h3>CSS3</h3>
+      <p>Estilização moderna e responsiva de layouts, incluindo animações e pré-processadores (Sass/Less).</p>
     </div>
 
     <div class="skill-box">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="Ícone JavaScript">
       <h3>JavaScript</h3>
+      <p>Desenvolvimento de interatividade, manipulação do DOM e lógica de programação do lado do cliente.</p>
     </div>
 
   </div>
@@ -252,43 +302,58 @@
 <section id="servicos">
   <h2>Serviços</h2>
   <div class="grid">
-    <div class="proj proj-text"><strong>Criação de Sites</strong><br>Sites modernos e rápidos.</div>
-    <div class="proj proj-text"><strong>Lojas Online</strong><br>E-commerce otimizado.</div>
-    <div class="proj proj-text"><strong>Landing Pages</strong><br>Alto poder de conversão.</div>
-    <div class="proj proj-text"><strong>Design Personalizado</strong><br>Visual profissional.</div>
+    <div class="proj proj-text">
+      <strong>Criação de Sites Personalizados</strong><br>
+      Desenvolvimento de websites modernos e otimizados para sua necessidade, do conceito à publicação.
+    </div>
+    <div class="proj proj-text">
+      <strong>Lojas Online e E-commerce</strong><br>
+      Implementação de plataformas de vendas robustas, seguras e com foco na conversão para o seu negócio.
+    </div>
+    <div class="proj proj-text">
+      <strong>Landing Pages de Alta Conversão</strong><br>
+      Criação de páginas de destino com design estratégico para capturar leads e impulsionar suas campanhas.
+    </div>
+    <div class="proj proj-text">
+      <strong>Consultoria e Otimização Web</strong><br>
+      Análise e melhoria de performance, SEO e usabilidade para o seu projeto existente.
+    </div>
   </div>
 </section>
 
 <section id="experiencia">
   <h2>Experiência</h2>
   <div class="card">
-    <p><strong>+2 anos desenvolvendo projetos reais</strong>.</p>
-    <p>Foco em animações, UI moderna e performance.</p>
+    <p>Com mais de **[Número]** anos de experiência prática em desenvolvimento web, atuei em projetos desafiadores que me proporcionaram um vasto conhecimento em diversas tecnologias e metodologias ágeis. Meu portfólio inclui desde websites institucionais e landing pages de alta performance até e-commerce completos e dashboards interativos.</p>
+    <p>Sou especialista em transformar requisitos complexos em interfaces de usuário intuitivas e eficientes, sempre com foco em performance, acessibilidade e um código limpo e escalável.</p>
   </div>
 </section>
 
 <section id="contato">
   <h2>Contato</h2>
+  <p style="margin-bottom: 25px; max-width: 600px;">Interessado(a) em um novo projeto ou apenas para bater um papo? Clique em um dos links abaixo e vamos conversar!</p>
 
-  <form>
-    <input type="text" placeholder="Seu nome">
-    <input type="email" placeholder="Seu e-mail">
-    <textarea placeholder="Mensagem" rows="4"></textarea>
-    <button>Enviar</button>
-  </form>
+  <div class="contact-links">
+    
+    <a href="mailto:kaickisilva200706@gmail.com">
+      <i class="fas fa-envelope"></i> kaickisilva200706@gmail.com
+    </a>
+    
+    <a href="https://wa.me/5511982391638" target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp: (11) 98239-1638
+    </a>
+
+  </div>
 </section>
 
 <script>
-  // Pega todas as seções e todos os links de navegação
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('nav a');
 
-  // Função para remover a classe 'active' de todos os links
   const removeActive = () => {
       navLinks.forEach(link => link.classList.remove('active'));
   };
 
-  // 1. O IntersectionObserver para a animação de entrada (seu código original)
   const showObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('show');
@@ -297,41 +362,29 @@
 
   sections.forEach(sec => showObserver.observe(sec));
 
-
-  // 2. NOVO: O IntersectionObserver para o estado ativo da navegação
   const navObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      // Se a seção está na tela (isIntersecting)
       if (entry.isIntersecting) {
-        removeActive(); // Remove o brilho de todos
+        removeActive(); 
         
-        // Pega o ID da seção que está ativa (ex: 'home', 'contato')
         const sectionId = entry.target.id;
-        
-        // Encontra o link de navegação correspondente usando o atributo href
         const targetLink = document.querySelector(`nav a[href="#${sectionId}"]`);
         
-        // Se encontrar o link, adiciona a classe 'active'
         if (targetLink) {
           targetLink.classList.add('active');
         }
       }
     });
   }, { 
-    // rootMargin: Um offset que ajuda a definir quando a seção está "ativa"
-    rootMargin: "-50% 0px -50% 0px" 
+    rootMargin: "-25% 0px -75% 0px" 
   }); 
-  /* Explicação do rootMargin: 
-     -50% 0px -50% 0px significa que a seção está ativa
-     quando ela ocupa a metade central da tela (50% do topo e 50% da base).
-     Isso garante que apenas UMA seção seja considerada "ativa" de cada vez.
-  */
-
+  
   sections.forEach(sec => navObserver.observe(sec));
   
-  // Opcional: Adiciona a classe 'active' ao link #home assim que a página carrega
   document.addEventListener('DOMContentLoaded', () => {
-     document.querySelector('nav a[href="#home"]').classList.add('active');
+     // Garante que o link 'Início' esteja ativo ao carregar a página
+     const homeLink = document.querySelector('nav a[href="#home"]');
+     if (homeLink) homeLink.classList.add('active');
   });
 
 </script>
